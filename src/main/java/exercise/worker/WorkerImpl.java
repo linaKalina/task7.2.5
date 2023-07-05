@@ -30,7 +30,7 @@ public class WorkerImpl implements Worker {
                 .stream()
                 .distinct()
                 .sorted(String::compareTo)
-                .forEachOrdered(title -> sb.append("    ").append(title).append("\n"));
+                .forEachOrdered(title -> sb.append(title).append("\n"));
         return sb.toString();
     }
 
@@ -39,6 +39,7 @@ public class WorkerImpl implements Worker {
         List<Article> result = articles
                 .stream()
                 .filter(this::isArticleCorrect)
+                .distinct()
                 .toList();
         result.forEach(this::prepareDate);
         return result;

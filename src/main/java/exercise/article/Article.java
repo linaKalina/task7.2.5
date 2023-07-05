@@ -55,9 +55,9 @@ public class Article {
 
         Article article = (Article) o;
 
-         return  (!Objects.equals(title, article.title));
-//        if (!Objects.equals(content, article.content)) return false;
-//        return Objects.equals(author, article.author);
+        if (!Objects.equals(author, article.author)) return false;
+        if (!Objects.equals(content, article.content)) return false;
+        return Objects.equals(title, article.title);
     }
 
     @Override

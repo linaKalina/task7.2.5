@@ -21,7 +21,7 @@ class ExampleControllerTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.initMocks(this);
         subject = new ExampleController(personRepository);
     }
 
