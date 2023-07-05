@@ -28,6 +28,7 @@ public class WorkerImpl implements Worker {
         StringBuilder sb = new StringBuilder("Список доступных статей:\n");
         library.getAllTitles()
                 .stream()
+                .distinct()
                 .sorted(String::compareTo)
                 .forEachOrdered(title -> sb.append("    ").append(title).append("\n"));
         return sb.toString();
