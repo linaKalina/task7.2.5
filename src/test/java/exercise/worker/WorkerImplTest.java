@@ -1,6 +1,7 @@
 package exercise.worker;
 
 import exercise.article.Article;
+import exercise.article.Library;
 import exercise.article.LibraryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +16,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WorkerImplTest {
+
+    private Worker worker;
     @Mock
-    private WorkerImpl worker;
-    @Mock
-    private LibraryImpl library;
+    private Library library;
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
