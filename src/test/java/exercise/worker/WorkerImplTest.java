@@ -27,9 +27,12 @@ class WorkerImplTest {
     }
     @Test
     void addNewCorrectArticle() {
-        List<Article> list = new ArrayList<>();
-        list.add(new Article("title", "content", "name", LocalDate.now()));
-        assertTrue(!worker.prepareArticles(list).isEmpty());
+        List<String> list = new ArrayList<>();
+        list.add("title1");
+        list.add("title2");
+        Mockito.when(library.getAllTitles()).thenReturn(list);
+        assertEquals("Список доступных статей:\ntitle1\ntitle2\n", worker.getCatalog());
+
     }
     @Test
     void udateCatalog() {
@@ -46,19 +49,19 @@ class WorkerImplTest {
     void noFieldTitleNoArticle() {
         List<Article> list = new ArrayList<>();
         list.add(new Article(null, "content", "name", LocalDate.of(2023, 1, 6)));
-        assertEquals("Список доступных статей:\n", worker.getCatalog());
+        assertEquals(new ArrayList<>(), worker.prepareArticles(list));
     }
     @Test
     void noFieldContentNoArticle() {
         List<Article> list = new ArrayList<>();
         list.add(new Article("title", null, "name", LocalDate.of(2023, 1, 6)));
-        assertEquals("Список доступных статей:\n", worker.getCatalog());
+        assertEquals(new ArrayList<>(), worker.prepareArticles(list));
     }
     @Test
     void noFieldAuthorNoArticle() {
         List<Article> list = new ArrayList<>();
         list.add(new Article("title", "content", null, LocalDate.of(2023, 1, 6)));
-        assertEquals("Список доступных статей:\n", worker.getCatalog());
+        assertEquals(new ArrayList<>(), worker.prepareArticles(list));
     }
     @Test
     void setTodayDate() {
